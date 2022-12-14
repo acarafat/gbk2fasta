@@ -11,9 +11,8 @@ def gbk2fasta(gbkFile):
     allSeq = []
     for seq in SeqIO.parse(gbkFile, 'genbank'):
         allSeq.append(seq)
-    SeqIO.write(allSeq, gbkFile+'.fasta', 'fasta')
-    pass
 
+    return allSeq
 
 
 def gbk2ffn(gbkPath):
@@ -60,5 +59,13 @@ def gbk2faa(gbkPath):
 
 if __name__ == "__main__":
     inputFile = sys.argv[1]
-    gbk2fasta(inputFile)
-    print('Done.')
+    outputType = sys.argv[2]
+
+    if outputType == "fna":
+        allSeq = gbk2fasta(inputFile)
+    elif outputType == "ffn":
+        allSeq = gbk2ffn(inputFile)
+    elfi outputType == "faa":
+        allSeq = gbk2faa(inputFile)
+        
+    SeqIO.write(allSeq, gbkFile+'.fasta', 'fasta'
